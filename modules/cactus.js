@@ -1,7 +1,7 @@
 import {
-  setCustomProperty,
-  incrementCustomProperty,
-  getCustomProperty,
+  setCssProperty,
+  incrementCssProperty,
+  getCssProperty,
 } from "../property.js"
 
 const SPEED = 0.05
@@ -19,8 +19,8 @@ export function setupCactus() {
 
 export function updateCactus(delta, speedScale) {
   document.querySelectorAll("[data-cactus]").forEach(cactus => {
-    incrementCustomProperty(cactus, "--left", delta * speedScale * SPEED * -1)
-    if (getCustomProperty(cactus, "--left") <= -100) {
+    incrementCssProperty(cactus, "--left", delta * speedScale * SPEED * -1)
+    if (getCssProperty(cactus, "--left") <= -100) {
       cactus.remove()
     }
   })
@@ -42,9 +42,9 @@ export function getCactusRects() {
 function createCactus() {
   const cactus = document.createElement("img")
   cactus.dataset.cactus = true
-  cactus.src = "imgs/cactus.png"
+  cactus.src = "images/cactus.png"
   cactus.classList.add("cactus")
-  setCustomProperty(cactus, "--left", 100)
+  setCssProperty(cactus, "--left", 100)
   worldElem.append(cactus)
 }
 

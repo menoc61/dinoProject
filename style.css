@@ -25,7 +25,12 @@ body {
   right: 1vmin;
   top: 1vmin;
 }
-
+.score-txt{
+  position: absolute;
+  font-size: 3vmin;
+  right: 7vmin;
+  top: 1vmin;
+}
 .start-screen {
   position: absolute;
   font-size: 5vmin;

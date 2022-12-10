@@ -1,7 +1,7 @@
 import {
-  getCustomProperty,
-  incrementCustomProperty,
-  setCustomProperty,
+  getCssProperty,
+  incrementCssProperty,
+  setCssProperty,
 } from "../property.js"
 // vitesse de base
 const SPEED = 0.05
@@ -9,16 +9,18 @@ const SPEED = 0.05
 const groundElems = document.querySelectorAll("[data-ground]")
 
 export function setupGround() {
-  setCustomProperty(groundElems[0], "--left", 0)//--left est la proprieter css create dans le css
-  setCustomProperty(groundElems[1], "--left", 300)
+  //assignier la position du premier sol a zero et celle du deuxeme a 300px a la gauche
+  setCssProperty(groundElems[0], "--left", 0)//--left est la proprieter css create dans le css
+  setCssProperty(groundElems[1], "--left", 300)
 }
 
 export function updateGround(delta, speedScale) {
+  //faire avance la position du sol par la gauche a chaque fois que les frames sont mis a jour
   groundElems.forEach(ground => {
-    incrementCustomProperty(ground, "--left", delta * speedScale * SPEED * -1)
+    incrementCssProperty(ground, "--left", delta * speedScale * SPEED * -1)
 
-    if (getCustomProperty(ground, "--left") <= -300) {
-      incrementCustomProperty(ground, "--left", 600)
+    if (getCssProperty(ground, "--left") <= -300) {
+      incrementCssProperty(ground, "--left", 600)
     }
   })
 }
