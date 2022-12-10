@@ -14,7 +14,7 @@ const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
 const endScreenElem = document.querySelector("[data-end-screen]")
-
+const record = document.querySelector(".record")
 // redimensionner l'ecran dependant de ça taille
 setPixelToWorldScale() // loopback function
 window.addEventListener("resize", setPixelToWorldScale)
@@ -23,6 +23,8 @@ document.addEventListener("keydown", handleStart, { once: true })
 let lastTime // utiliser pour pouvoir garder la valeur de la milliseconde passe et calculer delta
 let speedScale
 let score
+let name
+var player = []
 // function qui s'execute chaque seconde et actualise completement le contenu du navigateur
 function update(time) {
   if (lastTime == null) {
@@ -75,6 +77,8 @@ function checkLose() {
     lastTime = null
     speedScale = 1 // inisializ the default speed scale
     score = 0
+    name = prompt("Enter your name:")
+  
     setupGround()
     setupDino()
     setupCactus()
@@ -89,6 +93,11 @@ function checkLose() {
     setTimeout(() => {
       document.addEventListener("keydown", handleStart, { once: true })
       endScreenElem.classList.remove("hide")
+      let person = {name,score}
+      player.push(person)
+      Array.from(player).forEach(user => {
+        record.textContent += user.name + " " + parseInt(user.score) 
+      })
     }, 100)
   }  
 
